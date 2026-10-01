@@ -1,0 +1,135 @@
+{
+  "task": "Write a 600-word executive article for banking CTOs about agent governance.",
+  "task_spec": "executive-article",
+  "budget": {
+    "limit_tokens": 2200,
+    "used_tokens": 542,
+    "remaining_tokens": 1658
+  },
+  "selected": [
+    {
+      "id": "brand.positioning",
+      "domain": "brand",
+      "kind": "spec",
+      "authority": "canonical",
+      "status": "current",
+      "path": "context/brand/positioning.md",
+      "title": "Canonical positioning",
+      "tags": [
+        "positioning",
+        "technology consultancy",
+        "decision quality",
+        "capability"
+      ],
+      "effective_date": null,
+      "max_tokens": null,
+      "estimated_tokens": 127,
+      "authority_score": 100,
+      "relevance_score": 0.1,
+      "total_score": 132.0
+    },
+    {
+      "id": "audience.banking-cto",
+      "domain": "audience",
+      "kind": "concept",
+      "authority": "approved",
+      "status": "current",
+      "path": "context/audience/banking-cto.md",
+      "title": "Banking CTO",
+      "tags": [
+        "banking",
+        "CTO",
+        "agentic AI",
+        "governance",
+        "runtime"
+      ],
+      "effective_date": null,
+      "max_tokens": null,
+      "estimated_tokens": 92,
+      "authority_score": 80,
+      "relevance_score": 0.3,
+      "total_score": 116.0
+    },
+    {
+      "id": "evidence.agent-governance",
+      "domain": "evidence",
+      "kind": "evidence",
+      "authority": "approved",
+      "status": "current",
+      "path": "context/evidence/agent-governance.md",
+      "title": "Agent governance evidence notes",
+      "tags": [
+        "agents",
+        "context",
+        "tools",
+        "permissions",
+        "evaluation"
+      ],
+      "effective_date": null,
+      "max_tokens": null,
+      "estimated_tokens": 138,
+      "authority_score": 80,
+      "relevance_score": 0.4,
+      "total_score": 118.0
+    },
+    {
+      "id": "content.executive-article",
+      "domain": "content",
+      "kind": "policy",
+      "authority": "canonical",
+      "status": "current",
+      "path": "context/content/executive-article.md",
+      "title": "Executive article policy",
+      "tags": [
+        "article",
+        "executive",
+        "CTO",
+        "writing"
+      ],
+      "effective_date": null,
+      "max_tokens": null,
+      "estimated_tokens": 86,
+      "authority_score": 100,
+      "relevance_score": 0.3,
+      "total_score": 136.0
+    }
+  ],
+  "missing_required_domains": [],
+  "decisions": [
+    {
+      "item_id": "audience.banking-cto",
+      "included": true,
+      "reason": "selected by authority/relevance within context budget",
+      "estimated_tokens": 92,
+      "score": 116.0
+    },
+    {
+      "item_id": "brand.positioning",
+      "included": true,
+      "reason": "selected by authority/relevance within context budget",
+      "estimated_tokens": 127,
+      "score": 132.0
+    },
+    {
+      "item_id": "content.executive-article",
+      "included": true,
+      "reason": "selected by authority/relevance within context budget",
+      "estimated_tokens": 86,
+      "score": 136.0
+    },
+    {
+      "item_id": "evidence.agent-governance",
+      "included": true,
+      "reason": "selected by authority/relevance within context budget",
+      "estimated_tokens": 138,
+      "score": 118.0
+    },
+    {
+      "item_id": "brand.old-campaign",
+      "included": false,
+      "reason": "status=superseded is not eligible",
+      "estimated_tokens": 0,
+      "score": 0.0
+    }
+  ]
+}

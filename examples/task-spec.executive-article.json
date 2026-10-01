@@ -1,0 +1,9 @@
+{
+  "id": "executive-article",
+  "required_domains": ["brand", "audience", "evidence", "content"],
+  "optional_domains": [],
+  "allowed_kinds": ["spec", "concept", "evidence", "policy", "application"],
+  "context_budget_tokens": 2200,
+  "per_item_token_limit": 700,
+  "minimum_authority": "derived"
+}
