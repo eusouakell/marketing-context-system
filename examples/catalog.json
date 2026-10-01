@@ -1,0 +1,54 @@
+{
+  "items": [
+    {
+      "id": "brand.positioning",
+      "domain": "brand",
+      "kind": "spec",
+      "authority": "canonical",
+      "status": "current",
+      "path": "context/brand/positioning.md",
+      "title": "Canonical positioning",
+      "tags": ["positioning", "technology consultancy", "decision quality", "capability"]
+    },
+    {
+      "id": "brand.old-campaign",
+      "domain": "brand",
+      "kind": "application",
+      "authority": "derived",
+      "status": "superseded",
+      "path": "context/brand/old-campaign.md",
+      "title": "Old campaign",
+      "tags": ["campaign", "transformation", "ROI"]
+    },
+    {
+      "id": "audience.banking-cto",
+      "domain": "audience",
+      "kind": "concept",
+      "authority": "approved",
+      "status": "current",
+      "path": "context/audience/banking-cto.md",
+      "title": "Banking CTO",
+      "tags": ["banking", "CTO", "agentic AI", "governance", "runtime"]
+    },
+    {
+      "id": "evidence.agent-governance",
+      "domain": "evidence",
+      "kind": "evidence",
+      "authority": "approved",
+      "status": "current",
+      "path": "context/evidence/agent-governance.md",
+      "title": "Agent governance evidence notes",
+      "tags": ["agents", "context", "tools", "permissions", "evaluation"]
+    },
+    {
+      "id": "content.executive-article",
+      "domain": "content",
+      "kind": "policy",
+      "authority": "canonical",
+      "status": "current",
+      "path": "context/content/executive-article.md",
+      "title": "Executive article policy",
+      "tags": ["article", "executive", "CTO", "writing"]
+    }
+  ]
+}

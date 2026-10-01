@@ -1,0 +1,9 @@
+[project]
+name = "marketing-context-system"
+version = "0.2.0"
+description = "Minimal executable context router for marketing and knowledge-work agents"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+marketing-context = "marketing_context.cli:main"

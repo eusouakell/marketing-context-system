@@ -1,0 +1,12 @@
+[
+  {"id":"01-executive-agent-governance","task":"Write a 600-word executive article for banking CTOs about agent governance.","primary_domains":["brand","audience","evidence","content"]},
+  {"id":"02-linkedin-modernization","task":"Write a LinkedIn post for enterprise technology leaders about application modernization trade-offs.","primary_domains":["brand","audience","evidence","content"]},
+  {"id":"03-competitor-signal","task":"Assess a competitor's new AI consulting offer and explain the GTM implication.","primary_domains":["market","brand","offer","evidence"]},
+  {"id":"04-landing-page","task":"Draft a landing-page hero and proof section for a data governance offer.","primary_domains":["brand","offer","proof","audience"]},
+  {"id":"05-sales-one-pager","task":"Create an executive one-pager for an integration modernization engagement.","primary_domains":["brand","offer","audience","proof"]},
+  {"id":"06-icp-analysis","task":"Assess whether a healthcare payer matches the current ICP.","primary_domains":["market","audience","go-to-market"]},
+  {"id":"07-brand-rewrite","task":"Rewrite a generic AI services paragraph to match the approved positioning without adding claims.","primary_domains":["brand","content"]},
+  {"id":"08-evidence-claim","task":"Turn research findings into three publishable claims with explicit evidence scope.","primary_domains":["evidence","proof","content"]},
+  {"id":"09-persona-content","task":"Adapt a technical article introduction for a CDAO without changing factual claims.","primary_domains":["audience","content","evidence"]},
+  {"id":"10-vendor-comparison","task":"Explain vendor options without allowing vendor messaging to redefine the company's point of view.","primary_domains":["brand","market","evidence"]}
+]
