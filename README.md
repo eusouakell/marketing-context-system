@@ -1,100 +1,73 @@
 # Marketing Context System
 
-**A context operating system for AI-native marketing work.**
+**Executable reference implementation for Context Engineering in marketing knowledge work.**
 
-This project is the implementation-oriented companion to [context-engineering-for-marketing](https://github.com/eusouakell/context-engineering-for-marketing).
+V2 moves this project beyond a documentation scaffold.
 
-It provides a reusable structure for organizing marketing knowledge, routing context to agents, applying task skills and verifying outputs.
+It includes a small stdlib-only context router that catalogs available context, excludes invalid/superseded sources, scores authority and relevance, enforces a context budget, selects the task bundle, records included and excluded sources with reasons, renders the assembled context, and supports a reproducible ablation benchmark.
 
-## Design goal
+## Quick start
 
-Make AI-assisted marketing:
-
-- more consistent;
-- less dependent on chat memory;
-- traceable to sources;
-- resistant to stale context;
-- explicit about human decisions;
-- measurable through evals.
-
-## System
-
-```text
-CANONICAL KNOWLEDGE
-        ↓
-BOUNDED CONTEXTS
-        ↓
-CONTEXT ROUTER
-        ↓
-TASK SKILL
-        ↓
-AGENT
-        ↓
-DETERMINISTIC CHECKS
-        ↓
-SEMANTIC EVALS
-        ↓
-HUMAN GATES
-        ↓
-ARTIFACT
+```bash
+python -m marketing_context build \
+  --catalog examples/catalog.json \
+  --task-spec examples/task-spec.executive-article.json \
+  --task "Write an executive article about agent governance in banking" \
+  --out .run/context-bundle
 ```
 
-## Knowledge hierarchy
+Run tests:
 
-```text
-SPEC
-→ CONCEPTS
-→ DECISIONS + EVIDENCE
-→ VIEWS
-→ APPLICATIONS
+```bash
+python -m unittest discover -s tests -v
 ```
 
-This is an initial documentation scaffold. The context domains below are a proposed structure; their canonical knowledge files and executable router/checks are not included in this release. See the [context-domain index](contexts/README.md).
+Render the first benchmark conditions:
 
-## Repository
-
-```text
-SYSTEM-SPEC.md
-contexts/
-  brand/
-  market/
-  audience/
-  offer/
-  content/
-  proof/
-  go-to-market/
-  governance/
-harness/
-  checks.md
-  sensors.md
-  gates.md
-skills/
-  brand-context/
-  executive-content/
-  competitive-intelligence/
-evals/
-  brand-consistency.md
-  context-ablation.md
-examples/
-  task-context-bundle.md
+```bash
+python benchmark/render_pilot.py
 ```
 
-## Relationship to Marketing Skills
+## Architecture
 
-This system was influenced by working with agent-skill collections, including Corey Haines' open-source `marketingskills` project.
+```text
+AVAILABLE CONTEXT
+        ↓
+VALIDATE
+        ↓
+SELECT
+        ↓
+PRIORITIZE
+        ↓
+COMPRESS
+        ↓
+ISOLATE
+        ↓
+ASSEMBLE
+        ↓
+MANIFEST + CONTEXT BUNDLE
+```
 
-The distinction is intentional:
+## What the router is — and is not
 
-- **task skill**: how to perform a marketing task;
-- **context system**: what the agent should know, trust and load before the task;
-- **harness**: how the result is checked and whether it may progress.
+It is a reference implementation for making context decisions inspectable.
 
-This repository does not claim authorship of upstream Marketing Skills content.
+It is **not** a claim that keyword overlap is sufficient for production retrieval. The scoring algorithm is intentionally simple so the architecture can be tested independently of a vector database or model provider.
 
-See [NOTICE.md](NOTICE.md).
+Swap retrieval/ranking later without changing the contract.
 
-## Inspect the scaffold
+## Core distinction
 
-Start with [the system spec](SYSTEM-SPEC.md), follow [the worked task-context bundle](examples/task-context-bundle.md), then inspect [checks](harness/checks.md), [sensors](harness/sensors.md), [human gates](harness/gates.md) and [semantic evaluation](evals/brand-consistency.md).
+- **Skill** — how to perform the task.
+- **Context system** — what the agent should know, trust and load.
+- **Harness** — how execution is checked and allowed to progress.
 
-The workflow is **RESEARCH → PLAN → IMPLEMENT → VERIFY**. The [ablation protocol](evals/context-ablation.md) describes how to test the architecture; measured results are not yet published.
+## Research companion
+
+See [Context Engineering for Marketing](https://github.com/eusouakell/context-engineering-for-marketing).
+
+## Scope and governance
+
+The router reads a local catalog and builds context; it does not call an LLM or enforce publishing approvals. Semantic evals, sensors and human gates are documented controls. Token counts use a character-based approximation including rendered source headers; use the model tokenizer for exact limits. Missing required domains are reported in the manifest. Catalog paths must remain within the catalog root.
+
+Workflow: **RESEARCH → PLAN → IMPLEMENT → VERIFY**. Existing [system specification](SYSTEM-SPEC.md), [context domains](contexts/README.md) and [upstream attribution](NOTICE.md) remain part of the architecture.
