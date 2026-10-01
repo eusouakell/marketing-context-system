@@ -1,0 +1,16 @@
+{
+  "synthetic": true,
+  "title": "O que a IA precisa saber antes de ajudar seu marketing?",
+  "objective": "Explicar como escolher contexto necessário e confiável para um briefing de marketing.",
+  "audience_source": "audience",
+  "outline": [
+    {"section": "Problema", "text": "Acumular documentos não define quais fontes o agente deve usar.", "source_ids": ["brand", "audience"]},
+    {"section": "Distinções", "text": "Skill orienta como executar; sistema de contexto define conhecimento, fontes e autoridade; harness verifica a execução e governa sua progressão.", "source_ids": ["editorial-policy"]},
+    {"section": "Aplicação", "text": "Selecionar posicionamento, público e política editorial atuais; registrar por que a campanha antiga foi excluída.", "source_ids": ["brand", "audience", "editorial-policy"]}
+  ],
+  "unsupported_claims": ["Usar IA dobra o ROI"],
+  "external_evidence": [],
+  "publication_status": "HOLD",
+  "human_approval": null,
+  "note": "Todos os inputs são sintéticos; este artefato não demonstra resultado empírico."
+}
