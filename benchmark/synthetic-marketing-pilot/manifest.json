@@ -1,0 +1,53 @@
+{
+  "selected": [
+    {
+      "id": "brand",
+      "reason": "required for the synthetic briefing",
+      "source": {
+        "id": "brand",
+        "synthetic": true,
+        "authority": "canonical",
+        "status": "current",
+        "text": "Estudio Aurora é uma marca fictícia. Território: estratégia de marketing e organização de conhecimento. Promessa editorial: ajudar leitores a fazer escolhas mais claras, sem prometer retorno financeiro."
+      }
+    },
+    {
+      "id": "audience",
+      "reason": "required for the synthetic briefing",
+      "source": {
+        "id": "audience",
+        "synthetic": true,
+        "authority": "approved",
+        "status": "current",
+        "text": "Público fictício: profissionais de marketing que usam IA no trabalho e precisam identificar fontes confiáveis e contexto relevante. Evitar jargão de desenvolvimento de software."
+      }
+    },
+    {
+      "id": "editorial-policy",
+      "reason": "required for the synthetic briefing",
+      "source": {
+        "id": "editorial-policy",
+        "synthetic": true,
+        "authority": "canonical",
+        "status": "current",
+        "text": "Explicar skill, sistema de contexto e harness separadamente. Não inventar métricas. Publicação exige revisão humana. Material sintético não é evidência externa."
+      }
+    }
+  ],
+  "excluded": [
+    {
+      "id": "old-campaign",
+      "reason": "superseded"
+    }
+  ],
+  "publication_status": "HOLD",
+  "token_report": {
+    "encoding": "o200k_base",
+    "selected_knowledge_tokens": 106,
+    "budget_tokens": 1500,
+    "within_budget": true,
+    "skill_instruction_tokens": 3783,
+    "session_total_tokens": null,
+    "api_calls": 0
+  }
+}

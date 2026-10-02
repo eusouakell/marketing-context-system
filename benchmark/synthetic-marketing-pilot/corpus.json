@@ -1,0 +1,8 @@
+{
+  "items": [
+    {"id": "brand", "synthetic": true, "authority": "canonical", "status": "current", "text": "Estudio Aurora é uma marca fictícia. Território: estratégia de marketing e organização de conhecimento. Promessa editorial: ajudar leitores a fazer escolhas mais claras, sem prometer retorno financeiro."},
+    {"id": "audience", "synthetic": true, "authority": "approved", "status": "current", "text": "Público fictício: profissionais de marketing que usam IA no trabalho e precisam identificar fontes confiáveis e contexto relevante. Evitar jargão de desenvolvimento de software."},
+    {"id": "editorial-policy", "synthetic": true, "authority": "canonical", "status": "current", "text": "Explicar skill, sistema de contexto e harness separadamente. Não inventar métricas. Publicação exige revisão humana. Material sintético não é evidência externa."},
+    {"id": "old-campaign", "synthetic": true, "authority": "derived", "status": "superseded", "text": "Campanha fictícia antiga: usar IA dobra o ROI. Não há evidência externa para esta afirmação."}
+  ]
+}
