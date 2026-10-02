@@ -72,13 +72,68 @@ class ContextRouter:
             )
         return candidates, decisions
 
+    def _harness_report(
+        self,
+        *,
+        selected: list[Candidate],
+        decisions: list[Decision],
+        used_tokens: int,
+        missing_required_domains: list[str],
+    ) -> dict:
+        excluded = [decision for decision in decisions if not decision.included]
+        limit = self.spec.context_budget_tokens
+        utilization = 0.0 if limit == 0 else round(used_tokens / limit, 4)
+
+        return {
+            "guides": {
+                "task_spec": self.spec.id,
+                "required_domains": list(self.spec.required_domains),
+                "optional_domains": list(self.spec.optional_domains),
+                "selection_policy": "authority + task relevance + required-domain priority + context budget",
+            },
+            "guards": {
+                "applied": [
+                    "eligible-source-state",
+                    "task-domain-scope",
+                    "allowed-kind",
+                    "minimum-authority",
+                    "context-budget",
+                    "catalog-root-boundary",
+                ],
+                "blocked_items": sorted({decision.item_id for decision in excluded}),
+                "blocked_count": len(excluded),
+            },
+            "sensors": {
+                "selected_items": len(selected),
+                "excluded_items": len(excluded),
+                "budget_used_tokens": used_tokens,
+                "budget_limit_tokens": limit,
+                "budget_utilization": utilization,
+                "missing_required_domains": missing_required_domains,
+            },
+            "checks": [
+                {
+                    "id": "context-budget-respected",
+                    "passed": used_tokens <= limit,
+                    "observed": used_tokens,
+                    "expected": f"<= {limit}",
+                },
+                {
+                    "id": "required-domains-present",
+                    "passed": not missing_required_domains,
+                    "observed": missing_required_domains,
+                    "expected": "[]",
+                },
+            ],
+        }
+
     def route(self, task: str) -> dict:
         candidates, decisions = self.candidates(task)
         selected: list[Candidate] = []
         budget = self.spec.context_budget_tokens
         remaining = candidates[:]
 
-        # Guarantee the best feasible candidate for each required domain first.
+        # Guard: guarantee the best feasible candidate for each required domain first.
         for domain in self.spec.required_domains:
             domain_candidates = [c for c in remaining if c.item.domain == domain]
             if not domain_candidates:
@@ -89,32 +144,59 @@ class ContextRouter:
                 selected.append(best)
                 budget -= cost
             else:
-                decisions.append(Decision(best.item.id, False, "required-domain candidate exceeds remaining context budget", best.estimated_tokens, best.total_score))
+                decisions.append(
+                    Decision(
+                        best.item.id,
+                        False,
+                        "required-domain candidate exceeds remaining context budget",
+                        best.estimated_tokens,
+                        best.total_score,
+                    )
+                )
             remaining.remove(best)
 
-        # Fill remaining budget by score.
+        # Guard: fill the remaining budget by score without exceeding the configured limit.
         for cand in sorted(remaining, key=lambda c: (-c.total_score, c.item.id)):
             cost = self.selection_cost(selected, cand)
             if cost <= budget:
                 selected.append(cand)
                 budget -= cost
             else:
-                decisions.append(Decision(cand.item.id, False, "context budget exhausted", cand.estimated_tokens, cand.total_score))
+                decisions.append(
+                    Decision(
+                        cand.item.id,
+                        False,
+                        "context budget exhausted",
+                        cand.estimated_tokens,
+                        cand.total_score,
+                    )
+                )
 
         selected_ids = {c.item.id for c in selected}
         for cand in candidates:
             if cand.item.id in selected_ids:
-                decisions.append(Decision(cand.item.id, True, "selected by authority/relevance within context budget", cand.estimated_tokens, cand.total_score))
+                decisions.append(
+                    Decision(
+                        cand.item.id,
+                        True,
+                        "selected by authority/relevance within context budget",
+                        cand.estimated_tokens,
+                        cand.total_score,
+                    )
+                )
 
         domain_order = {d: i for i, d in enumerate(self.spec.required_domains)}
-        selected = sorted(selected, key=lambda c: (domain_order.get(c.item.domain, 999), -c.total_score, c.item.id))
+        selected = sorted(
+            selected,
+            key=lambda c: (domain_order.get(c.item.domain, 999), -c.total_score, c.item.id),
+        )
 
-        bundle_parts = []
-        for cand in selected:
-            bundle_parts.append(self.render_candidate(cand))
-
-        context = "\n\n---\n\n".join(bundle_parts)
+        context = "\n\n---\n\n".join(self.render_candidate(cand) for cand in selected)
         used = estimate_tokens(context)
+        missing_required_domains = sorted(
+            set(self.spec.required_domains) - {cand.item.domain for cand in selected}
+        )
+        sorted_decisions = sorted(decisions, key=lambda decision: (not decision.included, decision.item_id))
 
         return {
             "task": task,
@@ -134,7 +216,13 @@ class ContextRouter:
                 }
                 for c in selected
             ],
-            "missing_required_domains": sorted(set(self.spec.required_domains) - {c.item.domain for c in selected}),
-            "decisions": [asdict(d) for d in sorted(decisions, key=lambda d: (not d.included, d.item_id))],
+            "missing_required_domains": missing_required_domains,
+            "decisions": [asdict(decision) for decision in sorted_decisions],
+            "harness": self._harness_report(
+                selected=selected,
+                decisions=sorted_decisions,
+                used_tokens=used,
+                missing_required_domains=missing_required_domains,
+            ),
             "context": context,
         }
