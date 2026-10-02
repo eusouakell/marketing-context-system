@@ -1,31 +1,67 @@
-# Deterministic checks
+# Checks
 
-Initial checks:
+**Normative + feedback**
 
-- canonical-source-present;
-- source-not-superseded;
-- required-domain-present;
-- claim-has-evidence;
-- public-claim-approved;
-- confidential-entity-not-exposed;
-- context-budget-respected.
+Checks compare an observed state or artifact against an explicit expectation.
 
-A model should not be asked to decide something that a deterministic rule can validate.
+Checks can be deterministic, semantic or human-reviewed.
 
-## Existing architecture requirements
+## 1. Deterministic checks
 
+Use code/structure when the criterion can be evaluated exactly.
 
-Use deterministic checks when the rule can be evaluated through structure, metadata, exact comparison, status or registry.
+Current or planned examples:
 
-Initial checks:
+| Check | Status | Expected consequence |
+|---|---|---|
+| canonical-source-present | implemented / test-covered | fail |
+| source-not-superseded | implemented / test-covered | exclude/fail |
+| required-domain-present | implemented / reported | revise/escalate |
+| context-budget-respected | implemented | rebuild/fail |
+| required-metadata | partial | fail |
+| claim-has-evidence | documented | block public use |
+| public-claim-approved | documented | block publication |
+| confidential-entity-not-exposed | documented | block |
+| publication-permission | documented | block |
+| internal-link-valid | documented | revise |
 
-- canonical-source-present;
-- required-metadata;
-- source-not-superseded;
-- claim-has-evidence;
-- public-claim-approved;
-- confidential-entity-not-exposed;
-- publication-permission;
-- internal-link-valid.
+A model should not be asked to judge something a deterministic rule can validate.
 
-A failed blocking check returns the task to implementation or human review.
+## 2. Semantic checks
+
+Use model judgment only when the criterion is inherently semantic.
+
+Examples:
+- positioning fit;
+- audience relevance;
+- evidence discipline;
+- specificity;
+- decision usefulness;
+- generic/templated language.
+
+Semantic Checks should use an explicit rubric and, where practical, human calibration.
+
+See [evals.md](evals.md).
+
+## 3. Human checks
+
+Use human review when acceptance depends on accountable judgment rather than an objective assertion.
+
+Examples:
+- final publication quality;
+- sensitive context interpretation;
+- strategic coherence;
+- whether a model-introduced claim is actually intended.
+
+## Failure semantics
+
+Every Check should eventually declare:
+- input;
+- criterion;
+- pass/fail or scoring rule;
+- severity;
+- consequence;
+- owner;
+- evidence emitted.
+
+A Check without a consequence is often only a Sensor.
