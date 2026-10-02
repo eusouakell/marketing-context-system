@@ -2,9 +2,27 @@
 
 **Executable reference implementation for Context Engineering in marketing knowledge work.**
 
-V2 moves this project beyond a documentation scaffold.
+This repository turns the research ideas from [Context Engineering for Marketing](https://github.com/eusouakell/context-engineering-for-marketing) into an inspectable runtime system.
 
-It includes a small stdlib-only context router that catalogs available context, excludes invalid/superseded sources, scores authority and relevance, enforces a context budget, selects the task bundle, records included and excluded sources with reasons, renders the assembled context, and supports a reproducible ablation benchmark.
+It answers a concrete question:
+
+> Given all available context, what should this task receive, what should be excluded, and why?
+
+## What it does
+
+The router:
+
+- catalogs available context;
+- rejects invalid or superseded sources;
+- scores authority and task relevance;
+- enforces a context budget;
+- selects a task-specific bundle;
+- records included and excluded sources with reasons;
+- renders the assembled context;
+- produces a manifest that can be inspected later;
+- supports reproducible ablation experiments.
+
+The current ranking logic is intentionally simple. The point of V0.2 is to make the **decision contract** observable before replacing retrieval with more sophisticated infrastructure.
 
 ## Quick start
 
@@ -16,13 +34,13 @@ python -m marketing_context build \
   --out .run/context-bundle
 ```
 
-Run tests:
+Run the tests:
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-Render the first benchmark conditions:
+Render the prepared benchmark conditions:
 
 ```bash
 python benchmark/render_pilot.py
@@ -48,31 +66,54 @@ ASSEMBLE
 MANIFEST + CONTEXT BUNDLE
 ```
 
-## What the router is — and is not
+## Core contracts
 
-It is a reference implementation for making context decisions inspectable.
+**Skill** defines how to perform a task.
 
-It is **not** a claim that keyword overlap is sufficient for production retrieval. The scoring algorithm is intentionally simple so the architecture can be tested independently of a vector database or model provider.
+**Context system** defines what the agent should know, trust and load.
 
-Swap retrieval/ranking later without changing the contract.
+**Harness** checks execution and determines whether work may progress.
 
-## Core distinction
+Those responsibilities are deliberately separate.
 
-- **Skill** — how to perform the task.
-- **Context system** — what the agent should know, trust and load.
-- **Harness** — how execution is checked and allowed to progress.
+## What this implementation is not
 
-## Research companion
+It is not a production retrieval platform.
 
-See [Context Engineering for Marketing](https://github.com/eusouakell/context-engineering-for-marketing).
+It is not evidence that keyword overlap is sufficient for retrieval.
 
-## Scope and governance
+It does not call an LLM by itself.
 
-The router reads a local catalog and builds context; it does not call an LLM or enforce publishing approvals. Semantic evals, sensors and human gates are documented controls. Token counts use a character-based approximation including rendered source headers; use the model tokenizer for exact limits. Missing required domains are reported in the manifest. Catalog paths must remain within the catalog root.
+It does not enforce publishing approval.
 
-Workflow: **RESEARCH → PLAN → IMPLEMENT → VERIFY**. Existing [system specification](SYSTEM-SPEC.md), [context domains](contexts/README.md) and [upstream attribution](NOTICE.md) remain part of the architecture.
+It does not claim model-quality improvement before the evaluation exists.
 
+The scoring algorithm is intentionally replaceable so retrieval/ranking can evolve without changing the surrounding context contract.
 
-## Licensing status
+## Inspectable artifacts
 
-This repository currently mixes code, skills and original methodology, so it does **not** yet use one blanket license. See [LICENSING.md](LICENSING.md) for the asset boundaries and decisions that must be made before open-sourcing any part of it. Upstream attribution remains documented in [NOTICE.md](NOTICE.md).
+Useful entry points:
+
+- [System specification](SYSTEM-SPEC.md)
+- [Context domains](contexts/README.md)
+- [Harness checks](harness/checks.md)
+- [Evals](harness/evals.md)
+- [Gates](harness/gates.md)
+- [Example task bundle](examples/task-context-bundle.md)
+- [Synthetic benchmark pilot](benchmark/synthetic-marketing-pilot/README.md)
+
+## Current status
+
+V0.2 has executable routing, tests, manifests and a reproducible synthetic pilot structure.
+
+Semantic evals, sensors and human gates are documented controls. Exact model-token accounting and model-quality evaluation remain separate work.
+
+Token counts currently use a character-based approximation including rendered source headers. Missing required domains are reported in the manifest. Catalog paths are constrained to the catalog root.
+
+Workflow: **RESEARCH → PLAN → IMPLEMENT → VERIFY**.
+
+## Provenance and licensing
+
+See [NOTICE.md](NOTICE.md) for upstream attribution.
+
+This repository mixes executable code, skills, examples and original methodology, so it intentionally does **not** use one blanket license yet. [LICENSING.md](LICENSING.md) records the asset boundaries and decisions required before open-sourcing individual parts.
