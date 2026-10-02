@@ -71,3 +71,8 @@ See [Context Engineering for Marketing](https://github.com/eusouakell/context-en
 The router reads a local catalog and builds context; it does not call an LLM or enforce publishing approvals. Semantic evals, sensors and human gates are documented controls. Token counts use a character-based approximation including rendered source headers; use the model tokenizer for exact limits. Missing required domains are reported in the manifest. Catalog paths must remain within the catalog root.
 
 Workflow: **RESEARCH → PLAN → IMPLEMENT → VERIFY**. Existing [system specification](SYSTEM-SPEC.md), [context domains](contexts/README.md) and [upstream attribution](NOTICE.md) remain part of the architecture.
+
+
+## Licensing status
+
+This repository currently mixes code, skills and original methodology, so it does **not** yet use one blanket license. See [LICENSING.md](LICENSING.md) for the asset boundaries and decisions that must be made before open-sourcing any part of it. Upstream attribution remains documented in [NOTICE.md](NOTICE.md).
