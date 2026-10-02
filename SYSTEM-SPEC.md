@@ -11,7 +11,7 @@ Create a portable knowledge and context system that can be maintained by humans 
 3. Progressive disclosure is preferred over context dumping.
 4. Decisions remain separate from current state.
 5. Evidence remains separate from claims.
-6. Deterministic enforcement precedes probabilistic evaluation.
+6. Deterministic enforcement precedes probabilistic evaluation when the criterion is mechanically testable.
 7. Agents research before modifying canonical knowledge.
 8. Task skills consume context; they do not define canonical truth.
 9. Strategic changes require explicit human approval.
@@ -23,13 +23,30 @@ Create a portable knowledge and context system that can be maintained by humans 
 RESEARCH → PLAN → IMPLEMENT → VERIFY
 ```
 
-## Verification order
+## Harness model
+
+The runtime uses four control classes:
 
 ```text
-Deterministic checks
-→ Semantic evals
-→ Human gate when required
+GUIDES + GUARDS
+      ↓
+EXECUTION
+      ↓
+SENSORS
+      ↓
+CHECKS
+      ↓
+HUMAN DECISION WHEN REQUIRED
 ```
+
+- **Guides** describe relevant context before/during execution.
+- **Guards** constrain invalid or consequential actions before they proceed.
+- **Sensors** record what happened or what changed.
+- **Checks** compare observed state/output against explicit expectations.
+
+For verification, prefer deterministic Checks before semantic Checks. Human review remains where accountable judgment is required.
+
+See [harness/README.md](harness/README.md).
 
 ## Context domains
 
