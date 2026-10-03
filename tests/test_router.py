@@ -49,6 +49,36 @@ class RouterTests(unittest.TestCase):
         self.assertGreaterEqual(sensors["budget_utilization"], 0)
         self.assertLessEqual(sensors["budget_utilization"], 1)
 
+    def test_manifest_exposes_four_part_harness(self):
+        result = self.router.route("Write an executive article about agent governance for banking CTOs")
+        self.assertEqual(
+            set(result["harness"]),
+            {"guides", "guards", "sensors", "checks"},
+        )
+        self.assertEqual(result["harness"]["guides"]["task_spec"], self.router.spec.id)
+        self.assertIn("context-budget", result["harness"]["guards"]["applied"])
+        self.assertEqual(
+            result["harness"]["sensors"]["selected_items"],
+            len(result["selected"]),
+        )
+        checks = {check["id"]: check for check in result["harness"]["checks"]}
+        self.assertTrue(checks["context-budget-respected"]["passed"])
+        self.assertTrue(checks["required-domains-present"]["passed"])
+
+    def test_required_domain_check_fails_when_budget_prevents_selection(self):
+        router = ContextRouter(
+            self.router.catalog_root,
+            self.router.items,
+            replace(self.router.spec, context_budget_tokens=0),
+        )
+        result = router.route("agent governance")
+        checks = {check["id"]: check for check in result["harness"]["checks"]}
+        self.assertFalse(checks["required-domains-present"]["passed"])
+        self.assertEqual(
+            set(result["harness"]["sensors"]["missing_required_domains"]),
+            set(router.spec.required_domains),
+        )
+
     def test_rendered_bundle_budget_includes_metadata(self):
         for limit in (0, 25, 100, 300, 500):
             router = ContextRouter(
