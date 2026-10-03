@@ -72,7 +72,7 @@ MANIFEST + CONTEXT BUNDLE
 
 **Context system** defines what the agent should know, trust and load.
 
-**Harness** checks execution and determines whether work may progress.
+**Harness** surrounds execution with Guides, Guards, Sensors and Checks.
 
 Those responsibilities are deliberately separate.
 
@@ -90,15 +90,36 @@ It does not claim model-quality improvement before the evaluation exists.
 
 The scoring algorithm is intentionally replaceable so retrieval/ranking can evolve without changing the surrounding context contract.
 
+## Agentic harness
+
+```text
+GUIDES + GUARDS
+      ↓
+TASK / SKILL / AGENT
+      ↓
+SENSORS
+      ↓
+CHECKS
+```
+
+- **Guides** provide selected context and orientation.
+- **Guards** constrain what may proceed.
+- **Sensors** expose what happened.
+- **Checks** verify observed results against explicit criteria.
+
+The older `evals` and `gates` documents remain as compatibility views; they no longer define separate top-level control classes.
+
 ## Inspectable artifacts
 
 Useful entry points:
 
 - [System specification](SYSTEM-SPEC.md)
 - [Context domains](contexts/README.md)
-- [Harness checks](harness/checks.md)
-- [Evals](harness/evals.md)
-- [Gates](harness/gates.md)
+- [Harness overview](harness/README.md)
+- [Guides](harness/guides.md)
+- [Guards](harness/guards.md)
+- [Sensors](harness/sensors.md)
+- [Checks](harness/checks.md)
 - [Example task bundle](examples/task-context-bundle.md)
 - [Synthetic benchmark pilot](benchmark/synthetic-marketing-pilot/README.md)
 
@@ -106,7 +127,7 @@ Useful entry points:
 
 V0.2 has executable routing, tests, manifests and a reproducible synthetic pilot structure.
 
-Semantic evals, sensors and human gates are documented controls. Exact model-token accounting and model-quality evaluation remain separate work.
+The four-part harness is now the canonical control taxonomy. Several Guides, Guards, Sensors and deterministic Checks are implemented; semantic Checks and human approval contracts remain primarily documented controls. Exact model-token accounting and model-quality evaluation remain separate work.
 
 Token counts currently use a character-based approximation including rendered source headers. Missing required domains are reported in the manifest. Catalog paths are constrained to the catalog root.
 
