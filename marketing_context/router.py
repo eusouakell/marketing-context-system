@@ -4,7 +4,10 @@ from dataclasses import asdict
 from pathlib import Path
 
 from .catalog import read_item
-from .models import AUTHORITY_WEIGHTS, Candidate, ContextItem, Decision, TaskSpec
+from .checks import candidate_exclusion_reason, missing_required_domains
+from .guards import validate_task_spec
+from .models import Candidate, ContextItem, Decision, TaskSpec
+from .sensors import route_sensor_snapshot
 from .utils import compress_extractively, estimate_tokens, keyword_relevance
 
 
@@ -13,8 +16,7 @@ class ContextRouter:
         self.catalog_root = catalog_root
         self.items = items
         self.spec = spec
-        if spec.context_budget_tokens < 0 or spec.per_item_token_limit < 0:
-            raise ValueError("context budgets must be non-negative")
+        validate_task_spec(spec)
 
     @staticmethod
     def render_candidate(cand: Candidate) -> str:
@@ -27,25 +29,14 @@ class ContextRouter:
         after = "\n\n---\n\n".join(self.render_candidate(c) for c in [*selected, cand])
         return estimate_tokens(after) - estimate_tokens(before)
 
-    def _minimum_weight(self) -> int:
-        return AUTHORITY_WEIGHTS.get(self.spec.minimum_authority, 0)
-
     def candidates(self, task: str) -> tuple[list[Candidate], list[Decision]]:
         candidates: list[Candidate] = []
         decisions: list[Decision] = []
 
         for item in self.items:
-            if not item.is_eligible:
-                decisions.append(Decision(item.id, False, f"status={item.status} is not eligible"))
-                continue
-            if item.domain not in self.spec.all_domains:
-                decisions.append(Decision(item.id, False, f"domain={item.domain} is outside task scope"))
-                continue
-            if item.kind not in self.spec.allowed_kinds:
-                decisions.append(Decision(item.id, False, f"kind={item.kind} is not allowed"))
-                continue
-            if item.authority_weight < self._minimum_weight():
-                decisions.append(Decision(item.id, False, f"authority={item.authority} below minimum"))
+            exclusion = candidate_exclusion_reason(item, self.spec)
+            if exclusion:
+                decisions.append(Decision(item.id, False, exclusion))
                 continue
 
             text = read_item(self.catalog_root, item)
@@ -193,9 +184,8 @@ class ContextRouter:
 
         context = "\n\n---\n\n".join(self.render_candidate(cand) for cand in selected)
         used = estimate_tokens(context)
-        missing_required_domains = sorted(
-            set(self.spec.required_domains) - {cand.item.domain for cand in selected}
-        )
+        missing = missing_required_domains(self.spec, selected)
+        sensors = route_sensor_snapshot(self.spec, selected, decisions, used)
         sorted_decisions = sorted(decisions, key=lambda decision: (not decision.included, decision.item_id))
 
         return {
@@ -216,13 +206,14 @@ class ContextRouter:
                 }
                 for c in selected
             ],
-            "missing_required_domains": missing_required_domains,
+            "missing_required_domains": missing,
+            "sensors": sensors,
             "decisions": [asdict(decision) for decision in sorted_decisions],
             "harness": self._harness_report(
                 selected=selected,
                 decisions=sorted_decisions,
                 used_tokens=used,
-                missing_required_domains=missing_required_domains,
+                missing_required_domains=missing,
             ),
             "context": context,
         }

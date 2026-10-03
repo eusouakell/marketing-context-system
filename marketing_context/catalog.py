@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from .guards import resolve_catalog_path
 from .models import ContextItem, TaskSpec
 
 
@@ -43,7 +44,4 @@ def load_task_spec(path: str | Path) -> TaskSpec:
 
 
 def read_item(root: Path, item: ContextItem) -> str:
-    target = (root / item.path).resolve()
-    if not target.is_relative_to(root.resolve()):
-        raise ValueError("context path must stay inside the catalog root")
-    return target.read_text(encoding="utf-8")
+    return resolve_catalog_path(root, item).read_text(encoding="utf-8")

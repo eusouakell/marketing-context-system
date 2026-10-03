@@ -20,9 +20,10 @@ The router:
 - records included and excluded sources with reasons;
 - renders the assembled context;
 - produces a manifest that can be inspected later;
+- emits route-health sensors for required-domain coverage and budget usage;
 - supports reproducible ablation experiments.
 
-The current ranking logic is intentionally simple. The point of V0.2 is to make the **decision contract** observable before replacing retrieval with more sophisticated infrastructure.
+The current ranking logic is intentionally simple. The point of V0.3 is to make the **decision contract and control boundaries** observable before replacing retrieval with more sophisticated infrastructure.
 
 ## Quick start
 
@@ -51,20 +52,24 @@ python benchmark/render_pilot.py
 ```text
 AVAILABLE CONTEXT
         ↓
-VALIDATE
+GUIDES
         ↓
-SELECT
+GUARDS
         ↓
-PRIORITIZE
-        ↓
-COMPRESS
-        ↓
-ISOLATE
+VALIDATE / SELECT / PRIORITIZE / COMPRESS
         ↓
 ASSEMBLE
         ↓
+SENSORS
+        ↓
+CHECKS
+        ↓
 MANIFEST + CONTEXT BUNDLE
+        ↓
+EVALS / HUMAN GATES when required
 ```
+
+See [Agentic Factory — Guides / Guards / Sensors / Checks](AGENTIC-FACTORY.md).
 
 ## Core contracts
 
@@ -74,7 +79,9 @@ MANIFEST + CONTEXT BUNDLE
 
 **Harness** surrounds execution with Guides, Guards, Sensors and Checks.
 
-Those responsibilities are deliberately separate.
+**Guides** instruct. **Guards** block invalid runtime states. **Sensors** observe. **Checks** make deterministic validations.
+
+Semantic evals and human gates remain separate because they answer different questions.
 
 ## What this implementation is not
 
@@ -114,6 +121,8 @@ The older `evals` and `gates` documents remain as compatibility views; they no l
 Useful entry points:
 
 - [System specification](SYSTEM-SPEC.md)
+- [Agentic Factory contract](AGENTIC-FACTORY.md)
+- [Guides](guides/README.md)
 - [Context domains](contexts/README.md)
 - [Harness overview](harness/README.md)
 - [Guides](harness/guides.md)
@@ -125,9 +134,9 @@ Useful entry points:
 
 ## Current status
 
-V0.2 has executable routing, tests, manifests and a reproducible synthetic pilot structure.
+V0.3 has executable routing, tests, manifests, runtime guards, deterministic candidate checks, route sensors and a reproducible synthetic pilot structure.
 
-The four-part harness is now the canonical control taxonomy. Several Guides, Guards, Sensors and deterministic Checks are implemented; semantic Checks and human approval contracts remain primarily documented controls. Exact model-token accounting and model-quality evaluation remain separate work.
+The four-part harness is the canonical runtime control taxonomy. Semantic evals and human approval remain downstream controls under validation. Exact model-token accounting and model-quality evaluation remain separate work.
 
 Token counts currently use a character-based approximation including rendered source headers. Missing required domains are reported in the manifest. Catalog paths are constrained to the catalog root.
 
