@@ -64,7 +64,8 @@
       "provenance": [
         "original Cereja contract",
         "informed by audit of agency-agents Frontend Developer"
-      ]
+      ],
+      "contract": "agents/contracts/frontend-engineer.md"
     },
     {
       "id": "security-auditor",
@@ -121,7 +122,8 @@
       "provenance": [
         "original Cereja contract",
         "informed by audit of agency-agents AI-Generated Code Security Auditor"
-      ]
+      ],
+      "contract": "agents/contracts/security-auditor.md"
     },
     {
       "id": "readiness-evaluator",
@@ -176,7 +178,8 @@
       "provenance": [
         "original Cereja contract",
         "informed by audit of agency-agents Reality Checker"
-      ]
+      ],
+      "contract": "agents/contracts/readiness-evaluator.md"
     },
     {
       "id": "flame-ui-composer",
@@ -235,7 +238,8 @@
       "provenance": [
         "original Cereja contract",
         "informed by audit of UI Designer, UI Finish-Gate Reviewer and Brand Guardian"
-      ]
+      ],
+      "contract": "agents/contracts/flame-ui-composer.md"
     },
     {
       "id": "motion-web-director",
@@ -299,7 +303,8 @@
       "provenance": [
         "original Cereja contract",
         "informed by audit of Visual Storyteller, Whimsy Injector and Frontend Developer"
-      ]
+      ],
+      "contract": "agents/contracts/motion-web-director.md"
     },
     {
       "id": "motion-video-director",
@@ -365,7 +370,8 @@
       "provenance": [
         "original Cereja contract",
         "informed by audit of Short-Video Editing Coach and Visual Storyteller"
-      ]
+      ],
+      "contract": "agents/contracts/motion-video-director.md"
     },
     {
       "id": "editorial-typography-director",
@@ -431,7 +437,8 @@
       "provenance": [
         "original Cereja contract",
         "created to fill a capability gap found in the agency-agents audit"
-      ]
+      ],
+      "contract": "agents/contracts/editorial-typography-director.md"
     },
     {
       "id": "photo-art-director",
@@ -494,7 +501,8 @@
       "provenance": [
         "original Cereja contract",
         "informed by audit of Visual Storyteller"
-      ]
+      ],
+      "contract": "agents/contracts/photo-art-director.md"
     },
     {
       "id": "generative-photography-specialist",
@@ -550,7 +558,8 @@
       "provenance": [
         "original Cereja contract",
         "informed by audit of Image Prompt Engineer"
-      ]
+      ],
+      "contract": "agents/contracts/generative-photography-specialist.md"
     },
     {
       "id": "inclusive-visual-reviewer",
@@ -606,7 +615,8 @@
       "provenance": [
         "original Cereja contract",
         "informed by audit of Inclusive Visuals Specialist"
-      ]
+      ],
+      "contract": "agents/contracts/inclusive-visual-reviewer.md"
     }
   ]
 }
