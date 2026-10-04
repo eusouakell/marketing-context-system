@@ -3,6 +3,7 @@
 **Agent ID:** `frontend-engineer`  
 **Domain:** engineering  
 **Role type:** executor  
+**Tier:** core  
 **Lifecycle:** pilot  
 **Enabled by default:** no
 
@@ -18,9 +19,10 @@ An approved implementation task has requirements, acceptance criteria and releva
 
 - task spec
 - approved UI/design spec
-- Flame design language
+- Flame design language when relevant
 - motion spec when applicable
 - existing codebase context
+- locale/performance constraints when applicable
 
 ## Outputs
 
@@ -48,10 +50,13 @@ This agent may execute only inside the declared scope. It may not widen its own 
 
 ## Guards
 
+- smallest necessary diff
 - no silent design-system invention
 - no direct main writes
 - no accessibility regression
 - no unapproved dependency for visual effect
+- do not hard-code locale assumptions when the surface is multilingual
+- performance regressions require explicit evidence and approval
 
 A Guard is a hard boundary. When a Guard conflicts with the requested action, the agent stops and escalates rather than improvising around it.
 
@@ -60,6 +65,7 @@ A Guard is a hard boundary. When a Guard conflicts with the requested action, th
 - build/test results
 - bundle/performance observations
 - visual-delivery sensor when applicable
+- overflow/localization observations when applicable
 
 Sensors observe. They do not approve.
 
@@ -67,6 +73,7 @@ Sensors observe. They do not approve.
 
 - repository tests
 - Flame deterministic HTML gates when applicable
+- locale/pseudo-localization checks when available
 
 Checks are deterministic where possible. A passing Check does not replace semantic evaluation or human approval.
 
@@ -101,6 +108,7 @@ Escalate missing design decision, conflicting requirement, new dependency, new c
 ## Provenance
 
 - original Cereja contract
-- informed by audit of agency-agents Frontend Developer
+- informed by Agency Agents Frontend Developer
+- strengthened by Minimal Change Engineer, Internationalization Engineer and performance-review patterns
 
-This is an original eusouakell/Cereja Agentic Factory contract. External agent catalogs may inform capability discovery, but this contract defines local authority and behavior.
+This is an original eusouakell Agentic Factory contract. External catalogs may inform capability discovery, but this contract defines local authority and behavior.

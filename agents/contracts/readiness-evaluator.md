@@ -3,6 +3,7 @@
 **Agent ID:** `readiness-evaluator`  
 **Domain:** quality  
 **Role type:** evaluator  
+**Tier:** core  
 **Lifecycle:** pilot  
 **Enabled by default:** no
 
@@ -95,6 +96,6 @@ Escalate contradictory evidence, missing critical artifact or repeated unresolve
 ## Provenance
 
 - original Cereja contract
-- informed by audit of agency-agents Reality Checker
+- informed by Agency Agents Reality Checker and Evidence Collector
 
-This is an original eusouakell/Cereja Agentic Factory contract. External agent catalogs may inform capability discovery, but this contract defines local authority and behavior.
+This is an original eusouakell Agentic Factory contract. External catalogs may inform capability discovery, but this contract defines local authority and behavior.
