@@ -123,8 +123,10 @@
       "partial_or_needs_review": 15,
       "outside_current_scope": 54
     },
-    "deep_review_count": 49,
-    "methodology": "All README-listed agents inventoried. Metadata classification is first-pass; deep-review candidates require contract-level reading before roster decisions."
+    "deep_review_count": 80,
+    "methodology": "All README-listed agents inventoried. Metadata classification is first-pass; deep-review candidates require contract-level reading before roster decisions.",
+    "deep_review_method": "Contract-level review performed for all agents that could plausibly change the local roster or control model; all other README-listed agents remain inventoried and classified by metadata.",
+    "external_license": "MIT (AgentLand Contributors, 2025)"
   },
   "agents": [
     {
@@ -147,7 +149,7 @@
       "role_class": "director",
       "capability_family": "engineering_delivery",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💻 Engineering Division",
@@ -169,7 +171,7 @@
       "role_class": "executor",
       "capability_family": "sales_gtm",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💻 Engineering Division",
@@ -180,7 +182,7 @@
       "role_class": "executor",
       "capability_family": "sales_gtm",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💻 Engineering Division",
@@ -235,7 +237,7 @@
       "role_class": "director",
       "capability_family": "agentic_systems",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💻 Engineering Division",
@@ -257,7 +259,7 @@
       "role_class": "executor",
       "capability_family": "product_project_ops",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💻 Engineering Division",
@@ -279,7 +281,7 @@
       "role_class": "executor",
       "capability_family": "engineering_delivery",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💻 Engineering Division",
@@ -290,7 +292,7 @@
       "role_class": "executor",
       "capability_family": "engineering_delivery",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💻 Engineering Division",
@@ -345,7 +347,7 @@
       "role_class": "director",
       "capability_family": "research_synthesis",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💻 Engineering Division",
@@ -444,7 +446,7 @@
       "role_class": "executor",
       "capability_family": "other",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💻 Engineering Division",
@@ -521,7 +523,7 @@
       "role_class": "executor",
       "capability_family": "other",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💻 Engineering Division",
@@ -576,7 +578,7 @@
       "role_class": "executor",
       "capability_family": "other",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💻 Engineering Division",
@@ -587,7 +589,7 @@
       "role_class": "executor",
       "capability_family": "security_privacy",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💻 Engineering Division",
@@ -796,7 +798,7 @@
       "role_class": "executor",
       "capability_family": "product_project_ops",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💻 Engineering Division",
@@ -807,7 +809,7 @@
       "role_class": "director",
       "capability_family": "document_artifacts",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💻 Engineering Division",
@@ -829,7 +831,7 @@
       "role_class": "executor",
       "capability_family": "sales_gtm",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💻 Engineering Division",
@@ -939,7 +941,7 @@
       "role_class": "executor",
       "capability_family": "other",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "🎨 Design Division",
@@ -994,7 +996,7 @@
       "role_class": "channel_specialist",
       "capability_family": "engineering_delivery",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💰 Paid Media Division",
@@ -1005,7 +1007,7 @@
       "role_class": "channel_specialist",
       "capability_family": "quality_testing",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💰 Paid Media Division",
@@ -1082,7 +1084,7 @@
       "role_class": "channel_specialist",
       "capability_family": "sales_gtm",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "💼 Sales Division",
@@ -1577,7 +1579,7 @@
       "role_class": "executor",
       "capability_family": "research_synthesis",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "📊 Product Division",
@@ -1588,7 +1590,7 @@
       "role_class": "executor",
       "capability_family": "engineering_delivery",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "📊 Product Division",
@@ -1665,7 +1667,7 @@
       "role_class": "director",
       "capability_family": "product_project_ops",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "🎬 Project Management Division",
@@ -1687,7 +1689,7 @@
       "role_class": "executor",
       "capability_family": "other",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "🧪 Testing Division",
@@ -1753,7 +1755,7 @@
       "role_class": "evaluator",
       "capability_family": "other",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "🧪 Testing Division",
@@ -1918,7 +1920,7 @@
       "role_class": "executor",
       "capability_family": "security_privacy",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "🛟 Support Division",
@@ -1984,7 +1986,7 @@
       "role_class": "executor",
       "capability_family": "document_artifacts",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "🥽 Spatial Computing Division",
@@ -2149,7 +2151,7 @@
       "role_class": "director",
       "capability_family": "accessibility_inclusion",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "🎯 Specialized Division",
@@ -2479,7 +2481,7 @@
       "role_class": "director",
       "capability_family": "research_synthesis",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "🎯 Specialized Division",
@@ -2501,7 +2503,7 @@
       "role_class": "executor",
       "capability_family": "other",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "🎯 Specialized Division",
@@ -2578,7 +2580,7 @@
       "role_class": "executor",
       "capability_family": "security_privacy",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "🎯 Specialized Division",
@@ -2677,7 +2679,7 @@
       "role_class": "director",
       "capability_family": "engineering_delivery",
       "first_pass_fit": "not_prioritized",
-      "deep_review": false
+      "deep_review": true
     },
     {
       "division": "🎯 Specialized Division",
