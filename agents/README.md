@@ -4,7 +4,7 @@ The canonical Agent Registry, specialist contracts, audit provenance and registr
 
 https://github.com/eusouakell/agentic-factory
 
-This directory remains only as a compatibility pointer during the extraction cleanup.
+This directory is a compatibility pointer. The canonical Agent Registry lives in `eusouakell/agentic-factory`.
 
 ## Current boundary
 
