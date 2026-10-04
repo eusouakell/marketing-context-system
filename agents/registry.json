@@ -1,0 +1,612 @@
+{
+  "schema_version": "1.0",
+  "control_plane": {
+    "orchestrator_is_agent": false,
+    "note": "Routing, retries, handoffs and escalation belong to the control plane. Specialist agents cannot self-expand their authority."
+  },
+  "agents": [
+    {
+      "id": "frontend-engineer",
+      "name": "Frontend Engineer",
+      "domain": "engineering",
+      "role_type": "executor",
+      "status": "pilot",
+      "enabled_by_default": false,
+      "purpose": "Implement approved web interfaces from explicit requirements and Flame contracts without inventing product or brand rules.",
+      "trigger": "An approved implementation task has requirements, acceptance criteria and relevant design/context contracts.",
+      "inputs": [
+        "task spec",
+        "approved UI/design spec",
+        "Flame design language",
+        "motion spec when applicable",
+        "existing codebase context"
+      ],
+      "outputs": [
+        "code changes on a branch",
+        "tests",
+        "implementation notes",
+        "known limitations"
+      ],
+      "allowed_tools": [
+        "repository read/write on task branch",
+        "test runner",
+        "browser/dev tooling when available"
+      ],
+      "write_authority": "proposal_branch",
+      "guides": [
+        "Flame",
+        "task spec",
+        "repository conventions"
+      ],
+      "guards": [
+        "no silent design-system invention",
+        "no direct main writes",
+        "no accessibility regression",
+        "no unapproved dependency for visual effect"
+      ],
+      "sensors": [
+        "build/test results",
+        "bundle/performance observations",
+        "visual-delivery sensor when applicable"
+      ],
+      "checks": [
+        "repository tests",
+        "Flame deterministic HTML gates when applicable"
+      ],
+      "evals": [
+        "implementation quality",
+        "maintainability",
+        "fidelity to approved spec"
+      ],
+      "human_gate": "PR review and merge",
+      "retry_policy": "At most 2 autonomous fix loops after deterministic failures; then escalate.",
+      "escalation": "Escalate missing design decision, conflicting requirement, new dependency, new canonical token/component or repeated test failure.",
+      "provenance": [
+        "original Cereja contract",
+        "informed by audit of agency-agents Frontend Developer"
+      ]
+    },
+    {
+      "id": "security-auditor",
+      "name": "Security Auditor",
+      "domain": "engineering",
+      "role_type": "auditor",
+      "status": "pilot",
+      "enabled_by_default": false,
+      "purpose": "Audit AI-assisted code and agentic workflows for exploitable security failures with evidence and explicit remediation.",
+      "trigger": "Security-sensitive code change, new external integration, auth/data/tooling change, or pre-release security review.",
+      "inputs": [
+        "diff",
+        "relevant architecture",
+        "auth/data-flow context",
+        "tool permissions",
+        "test evidence"
+      ],
+      "outputs": [
+        "prioritized findings",
+        "evidence",
+        "exploit path",
+        "remediation guidance",
+        "rescan result"
+      ],
+      "allowed_tools": [
+        "read-only repository inspection",
+        "security scanners when available"
+      ],
+      "write_authority": "review_only",
+      "guides": [
+        "security architecture",
+        "agentic trust boundaries"
+      ],
+      "guards": [
+        "read-only by default",
+        "no exploitation beyond authorized test scope",
+        "secrets found imply rotation guidance, not just deletion"
+      ],
+      "sensors": [
+        "scanner output",
+        "secret/authz/tool-scope observations"
+      ],
+      "checks": [
+        "known deterministic security checks available in CI"
+      ],
+      "evals": [
+        "exploitability",
+        "blast radius",
+        "agentic excessive-agency risk"
+      ],
+      "human_gate": "Human accepts risk, remediation plan and release decision.",
+      "retry_policy": "Rescan after remediation; unresolved blocker remains open.",
+      "escalation": "Escalate credential exposure, broken authorization, prompt-injection tool sink, destructive excessive agency or uncertain high-impact finding.",
+      "provenance": [
+        "original Cereja contract",
+        "informed by audit of agency-agents AI-Generated Code Security Auditor"
+      ]
+    },
+    {
+      "id": "readiness-evaluator",
+      "name": "Production Readiness Evaluator",
+      "domain": "quality",
+      "role_type": "evaluator",
+      "status": "pilot",
+      "enabled_by_default": false,
+      "purpose": "Synthesize evidence from checks, sensors and reviews into a readiness recommendation without pretending subjective judgment is deterministic.",
+      "trigger": "A release, PR or deliverable reaches review-ready state.",
+      "inputs": [
+        "requirements",
+        "CI results",
+        "security findings",
+        "visual/accessibility evidence",
+        "open issues",
+        "screenshots or artifacts when relevant"
+      ],
+      "outputs": [
+        "READY | NEEDS_WORK | BLOCKED",
+        "evidence map",
+        "uncertainties",
+        "remaining risks"
+      ],
+      "allowed_tools": [
+        "read-only repo/artifact inspection"
+      ],
+      "write_authority": "review_only",
+      "guides": [
+        "definition of done",
+        "release criteria"
+      ],
+      "guards": [
+        "cannot override failed blocker check",
+        "cannot approve publication/release",
+        "must name missing evidence"
+      ],
+      "sensors": [
+        "all upstream run evidence"
+      ],
+      "checks": [
+        "consistency between claimed and observed evidence"
+      ],
+      "evals": [
+        "production readiness",
+        "risk concentration",
+        "evidence sufficiency"
+      ],
+      "human_gate": "Human release/merge decision.",
+      "retry_policy": "Re-evaluate only after new evidence or changes.",
+      "escalation": "Escalate contradictory evidence, missing critical artifact or repeated unresolved blocker.",
+      "provenance": [
+        "original Cereja contract",
+        "informed by audit of agency-agents Reality Checker"
+      ]
+    },
+    {
+      "id": "flame-ui-composer",
+      "name": "Flame UI Composer",
+      "domain": "visual",
+      "role_type": "executor",
+      "status": "pilot",
+      "enabled_by_default": false,
+      "purpose": "Compose interface proposals using Flame as canonical design authority instead of creating a competing design system.",
+      "trigger": "A digital interface or editorial surface needs composition from approved content and requirements.",
+      "inputs": [
+        "Flame",
+        "content intent",
+        "requirements",
+        "approved references",
+        "responsive/accessibility constraints"
+      ],
+      "outputs": [
+        "interface proposal",
+        "component/pattern mapping",
+        "prototype or implementation brief",
+        "explicit gaps requiring escalation"
+      ],
+      "allowed_tools": [
+        "design/prototyping tools",
+        "repository proposal branch"
+      ],
+      "write_authority": "proposal_branch",
+      "guides": [
+        "Flame",
+        "brand-media rules",
+        "surface requirements"
+      ],
+      "guards": [
+        "no silent new canonical font/token/component",
+        "no generic SaaS defaults when editorial pattern exists",
+        "no unapproved identity imitation"
+      ],
+      "sensors": [
+        "visual-delivery sensors",
+        "component reuse observations"
+      ],
+      "checks": [
+        "Flame deterministic gates when artifact is executable"
+      ],
+      "evals": [
+        "hierarchy",
+        "reading",
+        "product specificity",
+        "brand fit",
+        "cognitive load"
+      ],
+      "human_gate": "Kell approves new visual direction and any canonical system change.",
+      "retry_policy": "Two composition iterations before escalating unresolved design ambiguity.",
+      "escalation": "Any new canonical token/component/font/motion family or conflict with Flame.",
+      "provenance": [
+        "original Cereja contract",
+        "informed by audit of UI Designer, UI Finish-Gate Reviewer and Brand Guardian"
+      ]
+    },
+    {
+      "id": "motion-web-director",
+      "name": "Motion Web Director",
+      "domain": "visual",
+      "role_type": "director",
+      "status": "pilot",
+      "enabled_by_default": false,
+      "purpose": "Design purposeful motion systems for web interfaces and editorial experiences with explicit reduced-motion and performance behavior.",
+      "trigger": "A web interaction, transition or storytelling moment materially benefits from motion.",
+      "inputs": [
+        "Flame motion principles",
+        "interaction states",
+        "content hierarchy",
+        "browser/performance constraints",
+        "accessibility baseline"
+      ],
+      "outputs": [
+        "motion intent",
+        "trigger/state map",
+        "timing/easing ranges",
+        "implementation guidance",
+        "reduced-motion equivalent",
+        "performance budget"
+      ],
+      "allowed_tools": [
+        "prototype tools",
+        "motion reference analysis",
+        "code proposal when explicitly scoped"
+      ],
+      "write_authority": "proposal_branch",
+      "guides": [
+        "Flame motion system",
+        "interaction requirements"
+      ],
+      "guards": [
+        "motion must have a job",
+        "no essential meaning only in motion",
+        "reduced-motion required",
+        "no unapproved heavy animation dependency"
+      ],
+      "sensors": [
+        "animation count",
+        "duration",
+        "main-thread/performance observations",
+        "visual-delivery motion observations"
+      ],
+      "checks": [
+        "reduced-motion deterministic gate",
+        "focus/semantics gates when executable"
+      ],
+      "evals": [
+        "orientation",
+        "rhythm",
+        "delight vs distraction",
+        "sensory/cognitive load"
+      ],
+      "human_gate": "Kell/Flame review for signature motion and new motion families.",
+      "retry_policy": "One refine loop after implementation evidence; then escalate if design intent remains unclear.",
+      "escalation": "Motion changes meaning, navigation, reading order, accessibility or requires a new canonical motion family.",
+      "provenance": [
+        "original Cereja contract",
+        "informed by audit of Visual Storyteller, Whimsy Injector and Frontend Developer"
+      ]
+    },
+    {
+      "id": "motion-video-director",
+      "name": "Motion Video Director",
+      "domain": "visual",
+      "role_type": "director",
+      "status": "pilot",
+      "enabled_by_default": false,
+      "purpose": "Translate editorial narrative into video rhythm, kinetic typography, transitions, graphic motion and post-production direction.",
+      "trigger": "A video/reel/explainer needs designed motion rather than simple cuts.",
+      "inputs": [
+        "editorial packet",
+        "brand/Flame",
+        "script or thesis",
+        "platform format",
+        "available footage/assets",
+        "audio constraints"
+      ],
+      "outputs": [
+        "beat sheet",
+        "storyboard",
+        "motion board",
+        "kinetic type rules",
+        "transition/VFX plan",
+        "audio cues",
+        "export specs"
+      ],
+      "allowed_tools": [
+        "storyboard/editing planning tools",
+        "video analysis tools"
+      ],
+      "write_authority": "domain_assets",
+      "guides": [
+        "brand/Flame",
+        "editorial packet",
+        "channel contract"
+      ],
+      "guards": [
+        "narrative before effects",
+        "readability before kinetic treatment",
+        "rights/provenance for footage/assets",
+        "no auto-publish"
+      ],
+      "sensors": [
+        "shot duration",
+        "motion density",
+        "subtitle/readability observations",
+        "audio level observations"
+      ],
+      "checks": [
+        "format/export technical checks when available"
+      ],
+      "evals": [
+        "pacing",
+        "narrative clarity",
+        "brand fit",
+        "motion coherence",
+        "platform fit"
+      ],
+      "human_gate": "Human creative approval before final render/publish.",
+      "retry_policy": "Two storyboard/motion-board iterations before escalation.",
+      "escalation": "New brand motion language, unclear rights, synthetic-documentary ambiguity or conflict between readability and effect.",
+      "provenance": [
+        "original Cereja contract",
+        "informed by audit of Short-Video Editing Coach and Visual Storyteller"
+      ]
+    },
+    {
+      "id": "editorial-typography-director",
+      "name": "Editorial Typography Director",
+      "domain": "visual",
+      "role_type": "director",
+      "status": "pilot",
+      "enabled_by_default": false,
+      "purpose": "Own typographic hierarchy and rhythm across web, editorial, social, video and documents without silently changing canonical brand fonts.",
+      "trigger": "A new surface, format or redesign requires typographic system decisions beyond existing Flame rules.",
+      "inputs": [
+        "brand/Flame",
+        "content hierarchy",
+        "medium",
+        "language set",
+        "accessibility/performance constraints",
+        "canonical font assets if available"
+      ],
+      "outputs": [
+        "type roles",
+        "pairing rationale",
+        "scale",
+        "measure/leading/tracking guidance",
+        "responsive behavior",
+        "multilingual/fallback rules",
+        "kinetic-type handoff when relevant"
+      ],
+      "allowed_tools": [
+        "font/specimen analysis",
+        "layout/prototyping tools"
+      ],
+      "write_authority": "proposal_branch",
+      "guides": [
+        "Flame typography",
+        "brand rules",
+        "accessibility"
+      ],
+      "guards": [
+        "no silent canonical font substitution",
+        "license/source must be known",
+        "readability and diacritics required",
+        "webfont performance considered"
+      ],
+      "sensors": [
+        "line length",
+        "scale ratio",
+        "font loading/fallback observations",
+        "overflow/reflow observations"
+      ],
+      "checks": [
+        "font asset/license presence when automatable",
+        "contrast/reflow gates when applicable"
+      ],
+      "evals": [
+        "editorial rhythm",
+        "optical hierarchy",
+        "brand character",
+        "cross-medium coherence"
+      ],
+      "human_gate": "Kell approves canonical font/type-system changes.",
+      "retry_policy": "Two specimen iterations before escalating unresolved typeface/system choice.",
+      "escalation": "New canonical typeface, paid/unverified font license, multilingual failure or typography-motion conflict.",
+      "provenance": [
+        "original Cereja contract",
+        "created to fill a capability gap found in the agency-agents audit"
+      ]
+    },
+    {
+      "id": "photo-art-director",
+      "name": "Photo Art Director",
+      "domain": "visual",
+      "role_type": "director",
+      "status": "pilot",
+      "enabled_by_default": false,
+      "purpose": "Define photographic concept, shot language, lighting, styling and narrative coherence for real or synthetic photography.",
+      "trigger": "A campaign, article, site or visual story needs a coherent photographic language.",
+      "inputs": [
+        "editorial intent",
+        "brand/Flame",
+        "audience",
+        "usage/channel",
+        "rights constraints",
+        "available subjects/locations/assets"
+      ],
+      "outputs": [
+        "photo concept",
+        "mood/reference board brief",
+        "shot list",
+        "lighting/composition direction",
+        "styling/casting constraints",
+        "selection criteria"
+      ],
+      "allowed_tools": [
+        "reference research",
+        "moodboard/art-direction tools"
+      ],
+      "write_authority": "domain_assets",
+      "guides": [
+        "brand/Flame",
+        "editorial intent",
+        "rights rules"
+      ],
+      "guards": [
+        "no unlicensed campaign cloning",
+        "avoid direct imitation of a living photographer as production instruction",
+        "documentary claims require real provenance",
+        "representation must be intentional"
+      ],
+      "sensors": [
+        "shot/reference coverage",
+        "rights metadata completeness"
+      ],
+      "checks": [
+        "asset rights/provenance when structured"
+      ],
+      "evals": [
+        "narrative coherence",
+        "composition",
+        "lighting logic",
+        "brand fit",
+        "authenticity"
+      ],
+      "human_gate": "Human selects final concept and imagery.",
+      "retry_policy": "Two concept directions maximum before resolving brief ambiguity.",
+      "escalation": "Rights uncertainty, sensitive representation, documentary authenticity or brand-language change.",
+      "provenance": [
+        "original Cereja contract",
+        "informed by audit of Visual Storyteller"
+      ]
+    },
+    {
+      "id": "generative-photography-specialist",
+      "name": "Generative Photography Specialist",
+      "domain": "visual",
+      "role_type": "executor",
+      "status": "pilot",
+      "enabled_by_default": false,
+      "purpose": "Translate approved photographic direction into technically precise, model-aware generation instructions and controlled iterations.",
+      "trigger": "Approved photo art direction calls for synthetic imagery.",
+      "inputs": [
+        "photo direction",
+        "brand constraints",
+        "subject/environment",
+        "lighting/composition requirements",
+        "model/tool constraints"
+      ],
+      "outputs": [
+        "generation prompt/spec",
+        "negative constraints",
+        "iteration log",
+        "selected candidate metadata"
+      ],
+      "allowed_tools": [
+        "approved image-generation systems"
+      ],
+      "write_authority": "domain_assets",
+      "guides": [
+        "Photo Art Director brief",
+        "brand/Flame"
+      ],
+      "guards": [
+        "no fabricated evidence presented as documentary reality",
+        "no unapproved real-person likeness",
+        "no silent style imitation request",
+        "rights and disclosure rules apply"
+      ],
+      "sensors": [
+        "prompt/version metadata",
+        "generation consistency observations"
+      ],
+      "checks": [
+        "required metadata and disclosure fields when applicable"
+      ],
+      "evals": [
+        "technical photographic plausibility",
+        "direction adherence",
+        "artifact quality"
+      ],
+      "human_gate": "Human image selection and publication approval.",
+      "retry_policy": "Bounded generation set per brief; escalate rather than infinite prompt drift.",
+      "escalation": "Identity/likeness, rights, sensitive context, repeated mismatch or need to change art direction.",
+      "provenance": [
+        "original Cereja contract",
+        "informed by audit of Image Prompt Engineer"
+      ]
+    },
+    {
+      "id": "inclusive-visual-reviewer",
+      "name": "Inclusive Visual Reviewer",
+      "domain": "visual",
+      "role_type": "evaluator",
+      "status": "pilot",
+      "enabled_by_default": false,
+      "purpose": "Review photography, generated imagery, motion and interface visuals for representation risks, stereotype leakage and culturally implausible choices.",
+      "trigger": "Visual work depicts people, cultures, disability, sensitive contexts or synthetic human representation.",
+      "inputs": [
+        "visual assets",
+        "creative brief",
+        "audience/context",
+        "provenance/disclosure metadata"
+      ],
+      "outputs": [
+        "representation findings",
+        "risk level",
+        "specific revisions",
+        "uncertainties requiring human judgment"
+      ],
+      "allowed_tools": [
+        "read-only visual/reference review"
+      ],
+      "write_authority": "review_only",
+      "guides": [
+        "brand representation principles",
+        "context-specific cultural evidence"
+      ],
+      "guards": [
+        "do not infer identity from appearance as fact",
+        "do not universalize one cultural norm",
+        "do not approve legal/compliance claims"
+      ],
+      "sensors": [
+        "representation diversity/context observations",
+        "artifact anomalies"
+      ],
+      "checks": [
+        "required alt/provenance/disclosure fields when structured"
+      ],
+      "evals": [
+        "dignity",
+        "agency",
+        "stereotype risk",
+        "contextual plausibility",
+        "cultural specificity"
+      ],
+      "human_gate": "Human decides final representation choices.",
+      "retry_policy": "Re-review after material visual changes.",
+      "escalation": "Ambiguous sensitive representation, historical/cultural uncertainty or high-stakes depiction.",
+      "provenance": [
+        "original Cereja contract",
+        "informed by audit of Inclusive Visuals Specialist"
+      ]
+    }
+  ]
+}
