@@ -7,15 +7,17 @@ from pathlib import Path
 REQUIRED_FIELDS = {
     "id","name","domain","role_type","status","enabled_by_default","purpose","trigger",
     "inputs","outputs","allowed_tools","write_authority","guides","guards","sensors",
-    "checks","evals","human_gate","retry_policy","escalation","provenance"
+    "checks","evals","human_gate","retry_policy","escalation","provenance","contract"
 }
 ROLE_TYPES = {"executor","auditor","evaluator","director"}
 STATUSES = {"pilot","active","retired"}
 FORBIDDEN_WRITE_AUTHORITIES = {"main","publish","production"}
 
 
-def validate_registry(data: dict) -> list[str]:
+def validate_registry(data: dict, repo_root: Path | None = None) -> list[str]:
     errors: list[str] = []
+    repo_root = repo_root or Path(__file__).resolve().parents[1]
+
     if data.get("schema_version") != "1.0":
         errors.append("schema_version must be 1.0")
 
@@ -28,6 +30,8 @@ def validate_registry(data: dict) -> list[str]:
         return errors + ["agents must be a non-empty list"]
 
     ids: set[str] = set()
+    contracts: set[str] = set()
+
     for index, agent in enumerate(agents):
         prefix = f"agents[{index}]"
         missing = sorted(REQUIRED_FIELDS - set(agent))
@@ -39,6 +43,17 @@ def validate_registry(data: dict) -> list[str]:
         if agent_id in ids:
             errors.append(f"{prefix}: duplicate id {agent_id}")
         ids.add(agent_id)
+
+        contract = agent["contract"]
+        if contract in contracts:
+            errors.append(f"{agent_id}: duplicate contract path {contract}")
+        contracts.add(contract)
+
+        expected_contract = f"agents/contracts/{agent_id}.md"
+        if contract != expected_contract:
+            errors.append(f"{agent_id}: contract must be {expected_contract}")
+        if not (repo_root / contract).is_file():
+            errors.append(f"{agent_id}: contract file not found: {contract}")
 
         if agent["role_type"] not in ROLE_TYPES:
             errors.append(f"{agent_id}: invalid role_type {agent['role_type']}")
@@ -67,12 +82,13 @@ def main() -> int:
     args = parser.parse_args()
 
     data = json.loads(args.registry.read_text(encoding="utf-8"))
-    errors = validate_registry(data)
+    errors = validate_registry(data, Path.cwd())
     if errors:
         for error in errors:
             print(f"FAIL: {error}")
         return 1
-    print(f"PASS: {len(data['agents'])} agents satisfy registry contract")
+
+    print(f"PASS: {len(data['agents'])} agents satisfy registry and contract checks")
     return 0
 
 
