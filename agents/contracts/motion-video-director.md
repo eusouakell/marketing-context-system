@@ -3,6 +3,7 @@
 **Agent ID:** `motion-video-director`  
 **Domain:** visual  
 **Role type:** director  
+**Tier:** on_demand  
 **Lifecycle:** pilot  
 **Enabled by default:** no
 
@@ -108,4 +109,4 @@ New brand motion language, unclear rights, synthetic-documentary ambiguity or co
 - original Cereja contract
 - informed by audit of Short-Video Editing Coach and Visual Storyteller
 
-This is an original eusouakell/Cereja Agentic Factory contract. External agent catalogs may inform capability discovery, but this contract defines local authority and behavior.
+This is an original eusouakell Agentic Factory contract. External catalogs may inform capability discovery, but this contract defines local authority and behavior.
