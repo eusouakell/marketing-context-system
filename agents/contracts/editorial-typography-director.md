@@ -3,6 +3,7 @@
 **Agent ID:** `editorial-typography-director`  
 **Domain:** visual  
 **Role type:** director  
+**Tier:** on_demand  
 **Lifecycle:** pilot  
 **Enabled by default:** no
 
@@ -108,4 +109,4 @@ New canonical typeface, paid/unverified font license, multilingual failure or ty
 - original Cereja contract
 - created to fill a capability gap found in the agency-agents audit
 
-This is an original eusouakell/Cereja Agentic Factory contract. External agent catalogs may inform capability discovery, but this contract defines local authority and behavior.
+This is an original eusouakell Agentic Factory contract. External catalogs may inform capability discovery, but this contract defines local authority and behavior.
