@@ -3,6 +3,7 @@
 **Agent ID:** `motion-web-director`  
 **Domain:** visual  
 **Role type:** director  
+**Tier:** on_demand  
 **Lifecycle:** pilot  
 **Enabled by default:** no
 
@@ -106,4 +107,4 @@ Motion changes meaning, navigation, reading order, accessibility or requires a n
 - original Cereja contract
 - informed by audit of Visual Storyteller, Whimsy Injector and Frontend Developer
 
-This is an original eusouakell/Cereja Agentic Factory contract. External agent catalogs may inform capability discovery, but this contract defines local authority and behavior.
+This is an original eusouakell Agentic Factory contract. External catalogs may inform capability discovery, but this contract defines local authority and behavior.
