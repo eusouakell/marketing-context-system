@@ -3,6 +3,7 @@
 **Agent ID:** `security-auditor`  
 **Domain:** engineering  
 **Role type:** auditor  
+**Tier:** core  
 **Lifecycle:** pilot  
 **Enabled by default:** no
 
@@ -20,6 +21,7 @@ Security-sensitive code change, new external integration, auth/data/tooling chan
 - relevant architecture
 - auth/data-flow context
 - tool permissions
+- secret/credential context when applicable
 - test evidence
 
 ## Outputs
@@ -49,7 +51,9 @@ This agent may audit only inside the declared scope. It may not widen its own to
 
 - read-only by default
 - no exploitation beyond authorized test scope
-- secrets found imply rotation guidance, not just deletion
+- secrets found imply provider-side rotation guidance, not just deletion
+- authorization is enforced server-side/data-layer where applicable
+- least privilege for agent/tool access
 
 A Guard is a hard boundary. When a Guard conflicts with the requested action, the agent stops and escalates rather than improvising around it.
 
@@ -57,12 +61,14 @@ A Guard is a hard boundary. When a Guard conflicts with the requested action, th
 
 - scanner output
 - secret/authz/tool-scope observations
+- credential lifetime/rotation observations
 
 Sensors observe. They do not approve.
 
 ## Checks
 
 - known deterministic security checks available in CI
+- secret scanning when available
 
 Checks are deterministic where possible. A passing Check does not replace semantic evaluation or human approval.
 
@@ -97,6 +103,7 @@ Escalate credential exposure, broken authorization, prompt-injection tool sink, 
 ## Provenance
 
 - original Cereja contract
-- informed by audit of agency-agents AI-Generated Code Security Auditor
+- informed by Agency Agents AI-Generated Code Security Auditor
+- strengthened by Application Security Engineer and Secrets & Credential Hygiene Engineer
 
-This is an original eusouakell/Cereja Agentic Factory contract. External agent catalogs may inform capability discovery, but this contract defines local authority and behavior.
+This is an original eusouakell Agentic Factory contract. External catalogs may inform capability discovery, but this contract defines local authority and behavior.
