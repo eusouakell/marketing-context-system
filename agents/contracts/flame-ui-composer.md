@@ -3,6 +3,7 @@
 **Agent ID:** `flame-ui-composer`  
 **Domain:** visual  
 **Role type:** executor  
+**Tier:** core  
 **Lifecycle:** pilot  
 **Enabled by default:** no
 
@@ -99,6 +100,6 @@ Any new canonical token/component/font/motion family or conflict with Flame.
 ## Provenance
 
 - original Cereja contract
-- informed by audit of UI Designer, UI Finish-Gate Reviewer and Brand Guardian
+- informed by Agency Agents UI Designer, UI Finish-Gate Reviewer and Brand Guardian
 
-This is an original eusouakell/Cereja Agentic Factory contract. External agent catalogs may inform capability discovery, but this contract defines local authority and behavior.
+This is an original eusouakell Agentic Factory contract. External catalogs may inform capability discovery, but this contract defines local authority and behavior.
