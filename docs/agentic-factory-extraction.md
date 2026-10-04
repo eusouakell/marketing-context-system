@@ -1,6 +1,6 @@
 # Agentic Factory extraction plan
 
-Status: **approved direction / migration not started**.
+Status: **migration complete — canonical Factory established in eusouakell/agentic-factory**.
 
 ## Decision
 
@@ -139,6 +139,13 @@ Agency Agents audit material is derived from an MIT-licensed upstream catalog an
 Local agent contracts are original eusouakell Agentic Factory contracts.
 
 Do not apply a blanket repo license until asset-level licensing boundaries are explicitly reviewed.
+
+## Completion status
+
+- `eusouakell/agentic-factory` created and seeded with Registry V2.
+- Registry CI passed in the new canonical repo.
+- Marketing Context System, Cereja Editorial Engine and Cereja Knowledge System now link to the canonical Factory.
+- Duplicate active registry assets are removed from Marketing Context System by PR #16.
 
 ## Definition of Done
 
