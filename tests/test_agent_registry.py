@@ -14,6 +14,12 @@ class AgentRegistryTests(unittest.TestCase):
     def test_registry_is_valid(self):
         self.assertEqual(validate_registry(self.data, ROOT), [])
 
+    def test_v2_shape(self):
+        self.assertEqual(self.data["schema_version"], "2.0")
+        self.assertEqual(len(self.data["agents"]), 21)
+        self.assertEqual(sum(a["tier"] == "core" for a in self.data["agents"]), 7)
+        self.assertEqual(sum(a["tier"] == "on_demand" for a in self.data["agents"]), 14)
+
     def test_agent_ids_are_unique(self):
         ids = [agent["id"] for agent in self.data["agents"]]
         self.assertEqual(len(ids), len(set(ids)))
@@ -32,6 +38,24 @@ class AgentRegistryTests(unittest.TestCase):
             expected = ROOT / "agents" / "contracts" / f"{agent['id']}.md"
             self.assertEqual(agent["contract"], str(expected.relative_to(ROOT)))
             self.assertTrue(expected.is_file())
+
+    def test_inclusive_role_was_evolved_not_duplicated(self):
+        ids = {agent["id"] for agent in self.data["agents"]}
+        self.assertIn("inclusive-experience-reviewer", ids)
+        self.assertNotIn("inclusive-visual-reviewer", ids)
+
+    def test_core_review_chain_exists(self):
+        ids = {agent["id"] for agent in self.data["agents"] if agent["tier"] == "core"}
+        expected = {
+            "research-synthesist",
+            "frontend-engineer",
+            "code-reviewer",
+            "security-auditor",
+            "accessibility-auditor",
+            "readiness-evaluator",
+            "flame-ui-composer",
+        }
+        self.assertEqual(ids, expected)
 
 
 if __name__ == "__main__":
