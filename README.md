@@ -69,7 +69,7 @@ MANIFEST + CONTEXT BUNDLE
 EVALS / HUMAN GATES when required
 ```
 
-See [Agentic Factory — Guides / Guards / Sensors / Checks](AGENTIC-FACTORY.md).
+This repository implements context-specific controls under the canonical [Agentic Factory](https://github.com/eusouakell/agentic-factory). See the [local Factory mapping](AGENTIC-FACTORY.md) for how the generic control model is realized here.
 
 ## Core contracts
 
@@ -121,7 +121,8 @@ The older `evals` and `gates` documents remain as compatibility views; they no l
 Useful entry points:
 
 - [System specification](SYSTEM-SPEC.md)
-- [Agentic Factory contract](AGENTIC-FACTORY.md)
+- [Canonical Agentic Factory](https://github.com/eusouakell/agentic-factory)
+- [Local Factory mapping](AGENTIC-FACTORY.md)
 - [Guides](guides/README.md)
 - [Context domains](contexts/README.md)
 - [Harness overview](harness/README.md)
@@ -136,7 +137,7 @@ Useful entry points:
 
 V0.3 has executable routing, tests, manifests, runtime guards, deterministic candidate checks, route sensors and a reproducible synthetic pilot structure.
 
-The four-part harness is the canonical runtime control taxonomy. Semantic evals and human approval remain downstream controls under validation. Exact model-token accounting and model-quality evaluation remain separate work.
+The four-part harness is this repository's implementation of the canonical Factory control taxonomy. Semantic evals and human approval remain downstream controls under validation. Exact model-token accounting and model-quality evaluation remain separate work.
 
 Token counts currently use a character-based approximation including rendered source headers. Missing required domains are reported in the manifest. Catalog paths are constrained to the catalog root.
 

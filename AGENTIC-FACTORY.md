@@ -1,4 +1,6 @@
-# Agentic Factory — Guides / Guards / Sensors / Checks
+# Marketing Context System — Agentic Factory mapping
+
+The canonical cross-repository model lives in [eusouakell/agentic-factory](https://github.com/eusouakell/agentic-factory). This document maps that model to the Marketing Context System implementation.
 
 This repository uses four operational control types. The purpose is to make agent behavior inspectable without collapsing instructions, enforcement, observation and validation into one "harness" bucket.
 
