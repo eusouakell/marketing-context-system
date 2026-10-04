@@ -85,7 +85,7 @@ Those files mix:
 
 The new Factory should define the generic control contract once. Marketing Context System keeps its implementation-specific mapping.
 
-## Migration sequence
+## Completed migration sequence (historical execution plan)
 
 ### Phase 1 — Seed
 1. Create empty public `eusouakell/agentic-factory` repository.

@@ -51,7 +51,9 @@ SEMANTIC EVALS
 HUMAN GATE when required
 ```
 
-## Migration status
+## Local runtime migration status
+
+This section refers to the Marketing Context System's local harness/runtime evolution, not the completed repository extraction to `eusouakell/agentic-factory`.
 
 V1 changes runtime boundaries without deleting the existing `harness/` documentation paths. Those files remain stable references while the new executable boundaries are validated.
 
